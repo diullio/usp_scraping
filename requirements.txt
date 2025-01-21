@@ -1,0 +1,6 @@
+flask==3.0.3
+flask-socketio==5.5.1
+components==0.0.1a0
+numpy==1.26.4
+pandas==2.2.3
+db-sqlite3==0.0.1
