@@ -15,10 +15,10 @@ app = Flask(__name__)
 # Configuração do Selenium com ChromeDriver
 def get_driver():
     chrome_options = Options()
-    #chrome_options.add_argument("--headless")  # Executa sem abrir o navegador
+    chrome_options.add_argument("--headless")  # Executa sem abrir o navegador
     chrome_options.add_argument("--disable-gpu")
     chrome_options.add_argument("--no-sandbox")
-    chrome_service = ChromeService(executable_path='chromedriver.exe')
+    chrome_service = ChromeService(executable_path=r'/workspaces/usp_scraping/chromedriver-linux64/chromedriver')
     return webdriver.Chrome(service=chrome_service, options=chrome_options)
 
 # Função para carregar e processar a página
@@ -109,6 +109,12 @@ def download():
         return redirect(url_for('serve_certificate', filename=filename))
     
     return jsonify({'success': False, 'error': 'Erro ao baixar o certificado.'}), 400
+
+# if __name__ == "__main__":
+#     driver = get_driver()
+#     driver.get("https://www.google.com")
+#     print(driver.title)  # Deve imprimir "Google"
+#     driver.quit()
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=False)
